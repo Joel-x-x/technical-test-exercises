@@ -71,15 +71,15 @@ class Sorting {
      * @param int end
      * @return void
      */
-    public static void orderQuick(int[] array, int inicio, int fin)) {
+    public static void orderQuick(int[] array, int inicio, int fin) {
         if(inicio < fin) {
-            int pivoteIndex = parition(array, inicio, fin);
-            order(array,inicio, pivoteIndex - 1);
-            order(array, pivoteIndex + 1, fin);
+            int pivoteIndex = partitionQuick(array, inicio, fin);
+            orderQuick(array,inicio, pivoteIndex - 1);
+            orderQuick(array, pivoteIndex + 1, fin);
         }
     }
 
-    public static int partitionQuick(int array, int inicio, int fin) {
+    public static int partitionQuick(int[] array, int inicio, int fin) {
         int pivote = array[fin];
         int i = inicio - 1;
 
@@ -112,10 +112,10 @@ class Sorting {
         int[] left = Arrays.copyOfRange(array, 0, mitad);
         int[] right = Arrays.copyOfRange(array, mitad, array.length);
 
-        order(left);
-        order(right);
+        orderMerge(left);
+        orderMerge(right);
 
-        mixed(array, left, right);
+        mixedMerge(array, left, right);
     }
 
     public static void mixedMerge(int[] array, int[] left, int[] right) {
